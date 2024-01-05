@@ -759,6 +759,28 @@ layui.define(['jquery'], function(exports) {
 					return false;
 				}
 				layui.use(['polyfill', 'hlsmin', 'engine', 'player'], function() {
+					class pLoader extends Hls.DefaultConfig.loader {
+						constructor(config) {
+							super(config);
+							var load = this.load.bind(this);
+							this.load = function (context, config, callbacks) {
+								if (context.type == 'manifest') {
+									var onSuccess = callbacks.onSuccess;
+									callbacks.onSuccess = function (response, stats, context) {
+										const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
+											'(?:#EXT-X-DISCONTINUITY\r?\n?)?#EXTINF(?:[^#]+' + [
+											  /921c07e8bfad6789[0-9a-z]{16}/.source,
+											].join('|') + ')\\.ts',
+											'g',
+										);
+										response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+										onSuccess(response, stats, context);
+									};
+								}
+								load(context, config, callbacks);
+							};
+						}
+					};
 					var player = new DPlayer({
 						container: document.getElementById('mo-play-player'),
 						autoplay: JSON.parse($(str).attr('data-auto')),
@@ -770,12 +792,23 @@ layui.define(['jquery'], function(exports) {
 							pic: $(str).attr('data-pics'),
 							customType: {
 								'customHls': function(video, player) {
-									var hls = new Hls();
+									var hls = new Hls({
+										debug: false,
+										maxBufferSize: 0,       // Highly recommended setting in live mode
+										maxBufferLength: 15,     // Highly recommended setting in live mode
+										liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+										pLoader: pLoader,
+									});
 									hls.loadSource(video.src);
 									hls.attachMedia(video);
-									var engine = new P2PEngine(hls, {
+									var p2pConfig = {
+										logLevel: 'error',
+										showSlogan: false,
+										trackerZone: 'us',
 										live: JSON.parse(live),
-									});
+										hlsjsInstance: hls,
+									}
+									var engine = new P2pEngineHls(p2pConfig);
 									engine.on('peerId', function(peerId) {
 										$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-download"><span class="dplayer-info-panel-item-title">Video download</span><span class="dplayer-info-panel-item-data-download"></span></div>');
 										$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-speed"><span class="dplayer-info-panel-item-title">Video speed</span><span class="dplayer-info-panel-item-data-speed"></span></div>');
@@ -788,7 +821,12 @@ layui.define(['jquery'], function(exports) {
 									});
 								}
 							}
-						}
+						},
+						pluginOptions: {
+							hls: {
+								pLoader: pLoader,
+							}
+						},
 					});
 					player.on('loadstart', function() {
 						if ($(str).attr('data-prim') == 1 && mojia.global.mobile()) {
