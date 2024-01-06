@@ -774,7 +774,7 @@ input:-webkit-autofill:focus {background-clip: content-box !important;}
 .mo-shut-info .mo-shut-span {line-height: 70px}
 .mo-shut-info .mo-shut-code {height: 10rem;}
 /* 防红防封 */
-.mo-brow-info {background: white url(https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/browser.png) center top/contain no-repeat;}
+.mo-brow-info {background: white url(https://cdn.jsdelivr.net/gh/rexsi/mojia@master/asset/img/browser.png) center top/contain no-repeat;}
 .mo-brow-info .mo-brow-main {top: 60%;}
 .mo-brow-info .mo-brow-code {height: 10rem;}
 .mo-brow-info .mo-brow-inow {padding: 200px 20px 20px 20px;font-size: 54px;}

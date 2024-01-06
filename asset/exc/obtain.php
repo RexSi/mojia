@@ -1,9 +1,5 @@
 <?php
-/**
- * 作者:大橙子
- * 网址:https://amujie.com
- * QQ:1570457334
- */
+
 // 主题路径
 function moJiaPath($path) {
 	$install = '../../../../';
@@ -17,9 +13,9 @@ function moJiaPath($path) {
 	} elseif ($path == 'home') {
 		return $maccms['site']['install_dir'];
 	} elseif ($path == 'down') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/download@master/';
+		return 'https://cdn.jsdelivr.net/gh/rexsi/download@master/';
 	} elseif ($path == 'vers') {
-		return 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/';
+		return 'https://cdn.jsdelivr.net/gh/rexsi/mojia@master/';
 	} elseif ($path == 'path') {
 		return $install;
 	}
@@ -89,7 +85,7 @@ function moJiaDaTaoKe($api, $param, $appSecret) {
 function moJiaFace($data) {
 	$version = parse_ini_file(substr(moJiaPath('temp'), strlen(moJiaPath('home'))) . 'info.ini');
 	$mojia = file_exists('application/extra/mojiaopt.php') ? @require ('application/extra/mojiaopt.php') : @require ('config.php');
-	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/amujie') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
+	$cdnpath = $mojia['other']['cdns']['state'] ? $mojia['other']['cdns']['link'] . (strpos($mojia['other']['cdns']['link'], 'cdn.jsdelivr.net/gh/rexsi') !== false ? '@' . $version['version'] : '') . '/' : moJiaPath('temp');
 	preg_match_all('/(\[)[^(\])]+]/i', $data, $match);
 	foreach ($match[0] as $key => $value) {
 		if (preg_match('/\[(.*)\/(.*)\]/', $match[0][$key])) {
@@ -163,64 +159,4 @@ function moJiaCurlGet($url) {
 	$data = @curl_exec($curl);
 	curl_close($curl);
 	return $data;
-}
-
-// 下载主题文件
-function moJiaDownload($href, $path, $name) {
-	$curl = curl_init($href);
-	$down = fopen($path . $name, 'w+');
-	curl_setopt($curl, CURLOPT_HEADER, 0);
-	curl_setopt($curl, CURLOPT_TIMEOUT, 60);
-	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-	curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-	$result = curl_exec($curl);
-	curl_close($curl);
-	fwrite($down, $result);
-	fclose($down);
-	return true;
-}
-
-// 判断主题文件是否存在
-function moJiaIsExists($href) {
-	$curl = curl_init();
-	curl_setopt($curl, CURLOPT_URL, $href);
-	curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36');
-	curl_setopt($curl, CURLOPT_REFERER, $href);
-	curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
-	curl_setopt($curl, CURLOPT_HEADER, 1);
-	curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($curl, CURLOPT_ENCODING, '');
-	curl_setopt($curl, CURLOPT_NOBODY, 1);
-	curl_exec($curl);
-	$code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-	curl_close($curl);
-	if ($code == 200) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-// 解压zip文件
-function moJiaUnzip($path, $name, $pass) {
-	$zip = new ZipArchive();
-	if ($zip -> open($path . $name) === true) {
-		if ($zip -> setPassword($pass)) {
-			if (!$zip -> extractTo($path)) {
-				return false;
-			}
-		}
-		$zip -> close();
-		return true;
-	} else {
-		return false;
-	}
 }

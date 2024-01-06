@@ -1,7 +1,7 @@
 {include file="comment/input"}{include file="tinier/config"}
 {maccms:comment num="10" paging="yes" half="3" order="desc" by="id"}{/maccms:comment}
 <ul class="mo-comm-info mo-cols-rows mo-part-over">
-	{if$__PAGING__.record_total|intval}
+	{if intval($__PAGING__.record_total)}
 	{maccms:foreach name="__LIST__" id="vo"}
 	{assign name="userinfo" value=":model('User')->listData(array('user_id'=>$vo['user_id']),'user_id desc',1)['list'][0]"}
 	<li class="mo-part-btsd mo-bord-muted mo-ptxs-5px mo-ptmd-10px mo-mtxs-5px mo-mrxs-5px mo-mlxs-5px"></li>

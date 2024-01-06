@@ -5,9 +5,9 @@
 		<div class="mo-deta-btns mo-cols-rows mo-mlxs-5px mo-mlmd-10px">
 			{if$maccms.aid==10||$maccms.aid==13||$maccms.aid==15||$maccms.aid==16||$maccms.aid==34}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_detail($vo)}">查看详情</a>
-			{/if}{if!$obj.vod_pwd&&$maccms.aid!=15&&count($vo['vod_play_list'])}
+			{/if}{if!$obj.vod_pwd&&$maccms.aid!=15&&is_countable($vo['vod_play_list'])&&count($vo['vod_play_list'])}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_play($vo,'first')}">立即播放</a>
-			{/if}{if!$obj.vod_pwd&&$maccms.aid!=16&&count($vo['vod_down_list'])&&$maccms.aid!=10}
+			{/if}{if!$obj.vod_pwd&&$maccms.aid!=16&&is_countable($vo['vod_down_list'])&&count($vo['vod_down_list'])&&$maccms.aid!=10}
 			<a class="mo-deta-play mo-mrxs-10px mo-part-btns mo-lhxs-34px mo-bord-round mo-back-mojia mo-cols-info" href="{:mac_url_vod_down($vo,'first')}">资源下载</a>
 			{/if}
 		</div>
@@ -24,6 +24,5 @@
 			<li class="mo-cols-info mo-cols-xs12 mo-ptxs-5px mo-fsxs-14px mo-lhxs-20px mo-lhxl-24px mo-coxs-none mo-comd-block mo-text-muted">短评:&nbsp;{:mac_default(mac_substring(mac_filter_html(mac_default($vo.vod_blurb,$vo.vod_content)),140),'暂无简介')}</li>
 		</ul>
 	</dd>
-	{if$maccms.aid!=13&&$maccms.aid!=34}{include file="tinier/qrcode"}{/if}
 </dl>
 <dl class="mo-deta-info mo-part-bbsd mo-bord-muted mo-maxs-5px mo-mrmd-10px mo-mlmd-10px"></dl>
