@@ -767,13 +767,17 @@ layui.define(['jquery'], function(exports) {
 								if (context.type == 'manifest') {
 									var onSuccess = callbacks.onSuccess;
 									callbacks.onSuccess = function (response, stats, context) {
-										const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
-											'(?:#EXT-X-DISCONTINUITY\r?\n?)?#EXTINF(?:[^#]+' + [
-											  /921c07e8bfad6789[0-9a-z]{16}/.source,
-											].join('|') + ')\\.ts',
-											'g',
-										);
-										response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+										console.log(response.url);
+										if (response.url.includes('m3u.haiwaikan.com/xm3u8')) {
+											const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
+												'(?:#EXT-X-DISCONTINUITY\r?\n?)?#EXTINF[^#]+(?:' + [
+													/921c07e8bfad6789b64f007a85e475d1/.source,
+													/921c07e8bfad678939bf281dc43136d1/.source,
+												].join('|') + ')\\.ts',
+												'g',
+											);
+											response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+										}
 										onSuccess(response, stats, context);
 									};
 								}
