@@ -773,6 +773,8 @@ layui.define(['jquery'], function(exports) {
 												'(?:#EXT-X-DISCONTINUITY\r?\n?)?#EXTINF[^#]+(?:' + [
 													/921c07e8bfad6789b64f007a85e475d1/.source,
 													/921c07e8bfad678939bf281dc43136d1/.source,
+													/921c07e8bfad678982f74bbb85bcca4b/.source,
+													/921c07e8bfad6789d0462da25fc86ef5/.source,
 												].join('|') + ')\\.ts',
 												'g',
 											);
