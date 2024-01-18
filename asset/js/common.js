@@ -807,24 +807,24 @@ layui.define(['jquery'], function(exports) {
 									});
 									hls.loadSource(video.src);
 									hls.attachMedia(video);
-									var p2pConfig = {
-										logLevel: 'error',
-										showSlogan: false,
-										trackerZone: 'us',
-										live: JSON.parse(live),
-										hlsjsInstance: hls,
-									}
-									var engine = new P2pEngineHls(p2pConfig);
-									engine.on('peerId', function(peerId) {
-										$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-download"><span class="dplayer-info-panel-item-title">Video download</span><span class="dplayer-info-panel-item-data-download"></span></div>');
-										$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-speed"><span class="dplayer-info-panel-item-title">Video speed</span><span class="dplayer-info-panel-item-data-speed"></span></div>');
-										$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-peer"><span class="dplayer-info-panel-item-title">Video peer</span><span class="dplayer-info-panel-item-data-peer">&nbsp;0</span></div>');
-									}).on('stats', function(stats) {
-										$('.dplayer-info-panel-item-data-download').html('&nbsp;' + stats.totalHTTPDownloaded + 'KB');
-										$('.dplayer-info-panel-item-data-speed').html('<span style="font-family:cursive;padding-left:2px">↑</span>' + (stats.totalP2PUploaded / 1024).toFixed(2) + 'MB&nbsp;<span style="font-family:cursive">↓</span>' + (stats.totalP2PDownloaded / 1024).toFixed(2) + 'MB');
-									}).on('peers', function(peers) {
-										$('.dplayer-info-panel-item-data-peer').html('&nbsp;' + peers.length);
-									});
+									//var p2pConfig = {
+									//	logLevel: 'error',
+									//	showSlogan: false,
+									//	trackerZone: 'us',
+									//	live: JSON.parse(live),
+									//	hlsjsInstance: hls,
+									//}
+									//var engine = new P2pEngineHls(p2pConfig);
+									//engine.on('peerId', function(peerId) {
+									//	$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-download"><span class="dplayer-info-panel-item-title">Video download</span><span class="dplayer-info-panel-item-data-download"></span></div>');
+									//	$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-speed"><span class="dplayer-info-panel-item-title">Video speed</span><span class="dplayer-info-panel-item-data-speed"></span></div>');
+									//	$('.dplayer-info-panel').append('<div class="dplayer-info-panel-item dplayer-info-panel-item-peer"><span class="dplayer-info-panel-item-title">Video peer</span><span class="dplayer-info-panel-item-data-peer">&nbsp;0</span></div>');
+									//}).on('stats', function(stats) {
+									//	$('.dplayer-info-panel-item-data-download').html('&nbsp;' + stats.totalHTTPDownloaded + 'KB');
+									//	$('.dplayer-info-panel-item-data-speed').html('<span style="font-family:cursive;padding-left:2px">↑</span>' + (stats.totalP2PUploaded / 1024).toFixed(2) + 'MB&nbsp;<span style="font-family:cursive">↓</span>' + (stats.totalP2PDownloaded / 1024).toFixed(2) + 'MB');
+									//}).on('peers', function(peers) {
+									//	$('.dplayer-info-panel-item-data-peer').html('&nbsp;' + peers.length);
+									//});
 								}
 							}
 						},
