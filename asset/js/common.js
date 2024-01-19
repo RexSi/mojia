@@ -800,9 +800,9 @@ layui.define(['jquery'], function(exports) {
 								'customHls': function(video, player) {
 									var hls = new Hls({
 										debug: false,
-										maxBufferSize: 0,       // Highly recommended setting in live mode
-										maxBufferLength: 15,     // Highly recommended setting in live mode
-										liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+										//maxBufferSize: 0,       // Highly recommended setting in live mode
+										//maxBufferLength: 15,     // Highly recommended setting in live mode
+										//liveSyncDurationCount: 10,   // Highly recommended setting in live mode
 										pLoader: pLoader,
 									});
 									hls.loadSource(video.src);
