@@ -770,12 +770,13 @@ layui.define(['jquery'], function(exports) {
 										console.log(response.url);
 										if (response.url.includes('m3u.haiwaikan.com/xm3u8')) {
 											const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
-												'(?:#EXT-X-DISCONTINUITY\r?\n?)?#EXTINF[^#]+(?:' + [
+												'#EXTINF[^#]+(?:' + [
 													/921c07e8bfad6789b64f007a85e475d1/.source,
 													/921c07e8bfad678939bf281dc43136d1/.source,
 													/921c07e8bfad678982f74bbb85bcca4b/.source,
 													/921c07e8bfad6789d0462da25fc86ef5/.source,
-												].join('|') + ')\\.ts',
+													/921c07e8bfad67897c25dccb35b174e2/.source,
+												].join('|') + ')\\.ts\r?\n?',
 												'g',
 											);
 											response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
