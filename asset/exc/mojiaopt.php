@@ -374,17 +374,17 @@ return array (
       'sort' => 'sort',
       'order' => 'desc',
       'num' => '20',
-      'state' => '1',
+      'state' => '0',
     ),
   ),
   'play' => 
   array (
     'chat' => 
     array (
-      'name' => '扫码观看',
+      'name' => '',
       'pics' => '',
-      'send' => '关键词1',
-      'code' => '长城',
+      'send' => '',
+      'code' => '',
       'type' => '',
     ),
     'logo' => 
@@ -420,9 +420,9 @@ return array (
     ),
     'tips' => 
     array (
-      'name' => '提示按钮',
-      'title' => '关注微信公众号,追剧不迷路',
-      'link' => '提示按钮链接',
+      'name' => '',
+      'title' => '',
+      'link' => '',
       'href' => '',
     ),
     'load' => 
@@ -1106,14 +1106,14 @@ return array (
     ),
     'call' => 
     array (
-      'name' => '在线客服',
-      'link' => 'https://wpa.qq.com/msgrd?v=3&uin=1234567890&site=qq&menu=yes',
+      'name' => '',
+      'link' => '',
       'state' => '0',
     ),
     'chat' => 
     array (
-      'name' => '公众号码',
-      'tips' => '关注微信公众号,追剧不迷路',
+      'name' => '',
+      'tips' => '',
       'link' => '',
       'state' => '0',
       'pics' => '',
@@ -1123,7 +1123,7 @@ return array (
       'name' => '分享设置',
       'host' => '',
       'agent' => '0',
-      'state' => '1',
+      'state' => '0',
       'apis' => '',
       'regex' => '/(.*)/i',
       'image' => '',
