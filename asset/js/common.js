@@ -808,6 +808,21 @@ layui.define(['jquery'], function(exports) {
 									});
 									hls.loadSource(video.src);
 									hls.attachMedia(video);
+									hls.on(Hls.Events.ERROR, function (event, data) {
+										switch (data.details) {
+											case Hls.ErrorDetails.FRAG_LOAD_ERROR:
+												console.log("Hit error FRAG_LOAD_ERROR: ", data.response.code, data.response.text);
+												console.log(data.frag.url);
+												break;
+											case Hls.ErrorDetails.FRAG_LOAD_TIMEOUT:
+												console.log("Hit error FRAG_LOAD_TIMEOUT");
+												console.log(data.frag.url);
+												break;
+											default:
+												console.log("Hit error ", data.details);
+												break;
+										}
+									});
 									//var p2pConfig = {
 									//	logLevel: 'error',
 									//	showSlogan: false,
