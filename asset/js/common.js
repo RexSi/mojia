@@ -779,8 +779,10 @@ layui.define(['jquery'], function(exports) {
 												].join('|') + ')\\.ts\r?\n?',
 												'g',
 											);
+											console.log("replace before:", response.data);
 											response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
 										}
+										console.log("replace aftert: ", response.data);
 										onSuccess(response, stats, context);
 									};
 								}
