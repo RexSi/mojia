@@ -852,6 +852,17 @@ layui.define(['jquery'], function(exports) {
 							}
 						},
 					});
+					// add next button on player
+					if ($(str).attr('data-next')) {
+						let playBar = player.container.querySelector('.dplayer-icons.dplayer-icons-left');
+						let volumeBar = player.container.querySelector('.dplayer-icons.dplayer-icons-left .dplayer-volume');
+						let next_node = document.createElement("a");
+						next_node.setAttribute("href", $(str).attr('data-next'));
+						next_node.setAttribute("class", "dplayer-icon dplayer-play-icon");
+						next_node.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32"><path d="M22 16l-10.105-10.6-1.895 1.987 8.211 8.613-8.211 8.612 1.895 1.988 8.211-8.613z"></path></svg>';
+						playBar.insertBefore(next_node, volumeBar);
+					}
+
 					player.on('loadstart', function() {
 						if ($(str).attr('data-prim') == 1 && mojia.global.mobile()) {
 							$('video').attr('controls', 'true');
