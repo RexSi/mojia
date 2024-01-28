@@ -11,7 +11,7 @@ return array (
     ),
     'logo' => 
     array (
-      'src' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/logo.png',
+      'src' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/logo.svg',
       'link' => '/',
       'type' => 'logo',
       'desktop' => 'on',
@@ -63,7 +63,7 @@ return array (
       'link' => '/index.php/vod/type/id/2.html',
       'type' => 'cat',
       'desktop' => 'on',
-      'mobile' => '0',
+      'mobile' => 'on',
     ),
     'variety' => 
     array (
@@ -73,7 +73,7 @@ return array (
       'link' => '/index.php/vod/type/id/3.html',
       'type' => 'cat',
       'desktop' => 'on',
-      'mobile' => '0',
+      'mobile' => 'on',
     ),
     'comic' => 
     array (
@@ -83,7 +83,7 @@ return array (
       'link' => '/index.php/vod/type/id/4.html',
       'type' => 'cat',
       'desktop' => 'on',
-      'mobile' => '0',
+      'mobile' => 'on',
     ),
     'music' => 
     array (
@@ -112,8 +112,8 @@ return array (
       'name' => '资讯',
       'link' => '/index.php/art/index.html',
       'type' => 'mid',
-      'desktop' => 'on',
-      'mobile' => 'on',
+      'desktop' => '0',
+      'mobile' => '0',
     ),
     'actor' => 
     array (
@@ -132,7 +132,7 @@ return array (
       'name' => '专题',
       'link' => '/index.php/topic/index.html',
       'type' => 'mid',
-      'desktop' => 'on',
+      'desktop' => '0',
       'mobile' => '0',
     ),
     'site' => 
@@ -220,7 +220,7 @@ return array (
       'sort' => 'time',
       'order' => 'desc',
       'num' => '5',
-      'state' => '1',
+      'state' => '0',
     ),
     'reveal' => 
     array (
@@ -280,7 +280,7 @@ return array (
       'sort' => 'time',
       'order' => 'desc',
       'num' => '8',
-      'state' => '1',
+      'state' => '0',
     ),
     'sorted' => 
     array (
@@ -374,7 +374,7 @@ return array (
       'sort' => 'sort',
       'order' => 'desc',
       'num' => '20',
-      'state' => '1',
+      'state' => '0',
     ),
   ),
   'play' => 
@@ -382,7 +382,7 @@ return array (
     'chat' => 
     array (
       'name' => '扫码观看',
-      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@master/asset/img/favicon.svg',
       'send' => '关键词1',
       'code' => '长城',
       'type' => '',
@@ -390,7 +390,7 @@ return array (
     'logo' => 
     array (
       'name' => '视频标志',
-      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/logo.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/logo.svg',
       'state' => '0',
       'width' => '25%',
       'height' => '60px',
@@ -400,15 +400,15 @@ return array (
     'cover' => 
     array (
       'name' => '视频封面',
-      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/loading.gif',
+      'pics' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/loading.gif',
       'state' => '1',
     ),
     'advs' => 
     array (
       'name' => '视频广告',
       'tips' => '广告倒计时',
-      'time' => '5',
-      'link' => 'https://mojia.amujie.com',
+      'time' => '0',
+      'link' => 'https://github.rexsi.com',
       'group' => '',
     ),
     'high' => 
@@ -1093,7 +1093,7 @@ return array (
     'cdns' =>
     array (
       'name' => '静态加速',
-      'link' => 'https://cdn.jsdelivr.net/gh/amujie/mojia',
+      'link' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia',
       'local' => '0',
 	  'debug' => '1',
       'state' => '1',
@@ -1116,7 +1116,7 @@ return array (
       'tips' => '关注微信公众号,追剧不迷路',
       'link' => '',
       'state' => '0',
-      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/favicon.svg',
     ),
     'share' => 
     array (
@@ -1126,12 +1126,12 @@ return array (
       'state' => '1',
       'apis' => '',
       'regex' => '/(.*)/i',
-      'image' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/image.jpg',
+      'image' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/image.jpg',
     ),
     'icon' => 
     array (
       'name' => '网站标志',
-      'pics' => 'https://cdn.jsdelivr.net/gh/amujie/mojia@master/asset/img/favicon.png',
+      'pics' => 'https://cdn.jsdelivr.net/gh/rexsi/mojia@main/asset/img/favicon.svg',
     ),
     'lazy' => 
     array (
@@ -1187,8 +1187,8 @@ return array (
     'copy' => 
     array (
       'name' => '版权设置',
-      'tips' => 'Mojia',
-      'link' => 'https://mojia.amujie.com',
+      'tips' => 'Github',
+      'link' => 'https://github.rexsi.com',
     ),
     'head' => 
     array (
