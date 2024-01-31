@@ -43,15 +43,6 @@ class Mojia extends Base
             if (!file_put_contents('./template/mojia/html/tinier/seokey.html', $html)) {
                 return $this->error("SEO设置保存失败,请检查文件权限!");
             }
-
-            //更新淘宝客配置
-            if ($config['mojia']['home']['taoke']['state'] == 1) {
-                $taoke = $this->moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $config['mojia']['home']['taoke']['type'], 'juHuaSuan' => $config['mojia']['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $config['mojia']['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $config['mojia']['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $config['mojia']['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $config['mojia']['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $config['mojia']['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $config['mojia']['home']['taoke']['brand'], 'sort' => $config['mojia']['home']['taoke']['sort'], 'version' => $config['mojia']['home']['taoke']['ver'], 'appKey' => $config['mojia']['other']['taoke']['key']), $config['mojia']['other']['taoke']['secret']);
-                if (!file_put_contents('./application/extra/mojiatao.php', '<?php ' . PHP_EOL . 'return ' . var_export(array_slice($taoke['data']['list'], 0, $config['mojia']['home']['taoke']['num']), true) . ';')) {
-                    return $this->error("首页淘客数据更新失败!");
-                }
-            }
-
             return $this->success("保存成功!");
         }
 
@@ -60,17 +51,6 @@ class Mojia extends Base
         $this->assign("config", $config);
         $this->assign("mojia", config("mojiaopt"));
         return $this->fetch("admin@system/maccmsbox");
-    }
-
-    private function moJiaDaTaoKe($api, $param, $appSecret) {
-        $output = '';
-        ksort($param);
-        foreach ($param as $key => $value) {
-            $output .= '&' . $key . '=' . $value;
-        }
-        $output = trim($output, '&');
-        $param['sign'] = strtoupper(md5($output . '&key=' . $appSecret));
-        return json_decode(moJiaCurlGet($api . '?' . http_build_query($param)), true);
     }
 
     public function seo(){
@@ -94,7 +74,5 @@ class Mojia extends Base
         } else {
             die(json_encode(array('msg' => '当前已经是默认设置了')));
         }
-
     }
-
 }

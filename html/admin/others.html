@@ -149,25 +149,6 @@
 				<td>桌面端网页背景图片</td>
 			</tr>
 			<tr>
-				<td rowspan="2"><input type="input" name="mojia[other][taoke][name]" value="{$mojia['other']['taoke']['name']}" class="layui-input" placeholder="淘客设置"></td>
-				<td><input type="input" name="mojia[other][taoke][secret]" value="{$mojia['other']['taoke']['secret']}" class="layui-input" placeholder="APP_SECRET"></td>
-				<td colspan="2"><input type="input" name="mojia[other][taoke][key]" value="{$mojia['other']['taoke']['key']}" class="layui-input" placeholder="APP_KEY"></td>
-				<td>大淘客基本设置</td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="input" name="mojia[other][taoke][pid]" value="{$mojia['other']['taoke']['pid']}" class="layui-input" placeholder="PID"></td>
-				<td>
-					<input type="hidden" name="mojia[other][taoke][type]" value="{$mojia['other']['taoke']['type']}" />
-					<select multiple="multiple" lay-filter="home">
-						<option value="">请选择</option>
-						{maccms:foreach name=":explode(',','0,1,2,3,5,6,7,8,11')"}
-						<option value="{$vo}"{if in_array($vo, explode(',',$mojia['other']['taoke']['type']))} selected{/if}>{$vo|mac_get_mid_text|mac_default='首页'}</option>
-						{/maccms:foreach}
-					</select>
-				</td>
-				<td>选择触发更新缓存模块</td>
-			</tr>
-			<tr>
 				<td><input type="input" name="mojia[other][union][name]" value="{$mojia['other']['union']['name']}" class="layui-input" placeholder="触发任务"></td>
 				<td colspan="2"><input type="input" name="mojia[other][union][link]" value="{$mojia['other']['union']['link']}" class="layui-input" placeholder="请填写触发链接"></td>
 				<td>

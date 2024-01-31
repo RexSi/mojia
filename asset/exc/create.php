@@ -7,15 +7,7 @@
 // 请勿修改此文件
 error_reporting(0);
 
-if (isset($_POST['tao'])) {
-    $mojia = moJiaPath('mojia');
-    $taoke = moJiaDaTaoKe('https://openapi.dataoke.com/api/goods/get-goods-list', array('pageSize' => '50', 'cids' => $mojia['home']['taoke']['type'], 'juHuaSuan' => $mojia['home']['taoke']['qiang'] == 1 ? 1 : '', 'taoQiangGou' => $mojia['home']['taoke']['qiang'] == 2 ? 1 : '', 'tmall' => $mojia['home']['taoke']['qiang'] == 3 ? 1 : '', 'tchaoshi' => $mojia['home']['taoke']['qiang'] == 4 ? 1 : '', 'goldSeller' => $mojia['home']['taoke']['qiang'] == 5 ? 1 : '', 'haitao' => $mojia['home']['taoke']['qiang'] == 6 ? 1 : '', 'specialId' => $mojia['home']['taoke']['brand'], 'sort' => $mojia['home']['taoke']['sort'], 'version' => $mojia['home']['taoke']['ver'], 'appKey' => $mojia['other']['taoke']['key']), $mojia['other']['taoke']['secret']);
-    if (file_put_contents(moJiaPath('path') . 'application/extra/mojiatao.php', '<?php ' . PHP_EOL . 'return ' . var_export(array_slice($taoke['data']['list'], 0, $mojia['home']['taoke']['num']), true) . ';')) {
-        die(json_encode(array('msg' => '更新成功')));
-    } else {
-        die(json_encode(array('msg' => '更新失败')));
-    }
-} elseif (isset($_POST['time'])) {
+if (isset($_POST['time'])) {
     if (file_put_contents(moJiaPath('path') . 'runtime/temp/' . md5('mojia') . '.php', '<?php ' . PHP_EOL . 'return ' . var_export(time(), true) . ';')) {
         die(json_encode(array('msg' => '更新成功')));
     } else {

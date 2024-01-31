@@ -69,18 +69,6 @@ function moJiaMysql($type, $database, $sql) {
 	}
 }
 
-// 获取淘客数据
-function moJiaDaTaoKe($api, $param, $appSecret) {
-	$output = '';
-	ksort($param);
-	foreach ($param as $key => $value) {
-		$output .= '&' . $key . '=' . $value;
-	}
-	$output = trim($output, '&');
-	$param['sign'] = strtoupper(md5($output . '&key=' . $appSecret));
-	return json_decode(moJiaCurlGet($api . '?' . http_build_query($param)), true);
-}
-
 // 表情转换
 function moJiaFace($data) {
 	$version = parse_ini_file(substr(moJiaPath('temp'), strlen(moJiaPath('home'))) . 'info.ini');

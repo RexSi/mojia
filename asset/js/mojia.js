@@ -120,7 +120,6 @@ function() {
 			layui['common']['global']['edge'](),
 			layui['common']['global']['submit'](o, w),
 			layui['common']['navbar']['adding']('.mo-part-mask'),
-			layui['common']['navbar']['baidu'](),
 			layui['jquery']('.mo-java-ceal')['hide'](),
 			layui['jquery']('.mo-pops-search')['show'](),
 			layui['jquery'](w)['val'](layui['jquery'](w)['val']()),

@@ -41,9 +41,6 @@ layui.define(['jquery'], function(exports) {
 						layui.center.global.init();
 					});
 				}
-				if ($('.mo-java-taoke').attr('data-taoke')) {
-					$.post(magic.tpl + 'asset/exc/create.php?id=url', 'tao=tao');
-				}
 				if ($('.mo-java-union').attr('data-union')) {
 					$.post($('.mo-java-union').attr('data-url'));
 				}
@@ -262,19 +259,6 @@ layui.define(['jquery'], function(exports) {
 				for (var i = 0; i < screen.length; i++) {
 					this.toggle('.mo-navs-' + screen[i], '.mo-pops-' + screen[i]);
 				}
-			},
-			'baidu': function() {
-				if ($('.mo-navs-input').attr('data-search') == 1) return false;
-				$.post(magic.tpl + 'asset/exc/create.php?id=url', 'agent=' + encodeURIComponent('https://v.baidu.com/videoapi/?page_name=index&format=json&block_sign=list_index_top_movie_all,index_top_tv_all,index_top_tamasha,index_top_cartoon'), function(data) {
-					if (data) $('.mo-navs-input').attr('data-search', 1)
-					for (var i = 0; i < 4; i++) {
-						var output = '';
-						for (var k = 0; k < data[i].data.videos.length; k++) {
-							if (k < 10) output += '<li class="mo-pops-item mo-cols-info mo-cols-xs6"><a class="mo-pnxs-15px mo-lhxs-34px mo-java-event mo-wrap-arow" href="' + $('.mo-pops-recs').parent().prev().find('div').eq(0).attr('data-search') + '?wd=' + data[i].data.videos[k].title + '"><span class="mo-part-seal mo-back-items mo-back-item' + (k + 1) + '">' + (k + 1) + '</span><span class="mo-pops-text">' + data[i].data.videos[k].title + '</span></a></li>';
-						}
-						$('.mo-pops-tabs').find('ul').eq(i + ($('.mo-pops-hots').length == 6 ? 1 : 0)).html(output);
-					}
-				});
 			},
 			'loading': function(that) {
 				if (that.attr('data-load') == 1) {

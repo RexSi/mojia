@@ -711,17 +711,6 @@ return array (
       'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
       'des' => '\'影视专题,提供最新最热电影、电视剧、纪录片的专题汇总信息、视频高清在线观看\'',
     ),
-    'index70' => 
-    array (
-      'aid' => '70',
-      'info' => '淘客首页',
-      'type' => '\'article\'',
-      'title' => '$mojia[\'home\'][\'taoke\'][\'name\'].\' - \'.$maccms[\'site_name\']',
-      'image' => 'mac_url_img(trim($mojia[\'other\'][\'share\'][\'image\']))',
-      'key' => '\'秒杀,疯抢,优惠,包邮,特价,优惠券\'',
-      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(mac_get_mid_code($maccms[\'mid\']).\'/index\')',
-      'des' => '\'优惠券折扣直播第一站！每天更新千款，纯人工筛选验货，限时限量特卖，全场1折包邮！\'',
-    ),
     'index80' => 
     array (
       'aid' => '80',
@@ -1018,17 +1007,6 @@ return array (
       'key' => '$obj[\'topic_sub\'].\',\'.$obj[\'topic_key\'].\',\'.$obj[\'topic_type\'].\',\'.mac_default(mac_default($obj[\'topic_title\'],$obj[\'topic_name\']),\'404 Not Found\')',
       'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url_topic_detail($obj)',
       'des' => 'mac_default(mac_default($obj[\'topic_des\'],$obj[\'topic_blurb\']),mac_substring(mac_filter_html($obj[\'topic_content\']),120))',
-    ),
-    'index74' => 
-    array (
-      'aid' => '74',
-      'info' => '淘客详情',
-      'type' => '\'article\'',
-      'title' => '$details[\'data\'][\'dtitle\'].\' - \'.$maccms[\'site_name\']',
-      'image' => 'mac_url_img(trim($details[\'data\'][\'marketingMainPic\']))',
-      'key' => '$details[\'data\'][\'title\']',
-      'url' => '$maccms[\'http_type\'].$maccms[\'site_url\'].mac_url(\'label/taoke\').\'?id=\'.$Think.get.id.\'&goodsId=\'.Think.get.goodsId',
-      'des' => '$details[\'data\'][\'desc\']',
     ),
     'index84' => 
     array (
