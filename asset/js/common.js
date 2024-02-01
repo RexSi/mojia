@@ -557,6 +557,9 @@ layui.define(['jquery'], function(exports) {
 						$('.mo-down-info').show();
 					}
 				}
+				$.post('/black_filter.txt', function(data) {
+					layui.sessionData('adfilter', {key: 'filter', value: data.trim('\n').split('\n').join('|')});
+				})
 			},
 			'click': function() {
 				$('.mo-play-login').click(function() {
@@ -753,18 +756,16 @@ layui.define(['jquery'], function(exports) {
 									callbacks.onSuccess = function (response, stats, context) {
 										console.log(response.url);
 										if (response.url.includes('m3u.haiwaikan.com/xm3u8')) {
-											const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
-												'#EXTINF[^#]+(?:' + [
-													/921c07e8bfad6789b64f007a85e475d1/.source,
-													/921c07e8bfad678939bf281dc43136d1/.source,
-													/921c07e8bfad678982f74bbb85bcca4b/.source,
-													/921c07e8bfad6789d0462da25fc86ef5/.source,
-													/921c07e8bfad67897c25dccb35b174e2/.source,
-												].join('|') + ')\\.ts\r?\n?',
-												'g',
-											);
-											console.log("replace before:", response.data);
-											response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+											let adfilter = layui.sessionData('adfilter');
+											let ad_filter = adfilter.filter;
+											if (ad_filter && ad_filter.trim().length !== 0) {
+												const LEVEL_PLAYLIST_REGEX_AD = new RegExp(
+													'#EXTINF[^#]+(?:' + ad_filter.trim() + ')\\.ts\r?\n?',
+													'g',
+												);
+												console.log("replace before:", response.data);
+												response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+											}
 										}
 										console.log("replace aftert: ", response.data);
 										onSuccess(response, stats, context);
