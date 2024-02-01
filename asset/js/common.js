@@ -779,6 +779,7 @@ layui.define(['jquery'], function(exports) {
 						autoplay: JSON.parse($(str).attr('data-auto')),
 						logo: $(str).attr('data-logo'),
 						live: JSON.parse(live),
+						volume: 1.0,
 						video: {
 							url: mojia.player.video(str),
 							type: !mojia.global.mobile() && mojia.player.video(str).indexOf('.m3u8') > -1 ? 'customHls' : 'auto',
