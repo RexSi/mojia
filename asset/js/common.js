@@ -746,6 +746,17 @@ layui.define(['jquery'], function(exports) {
 					return false;
 				}
 				layui.use(['polyfill', 'hlsmin', 'engine', 'player'], function() {
+					function play_cdn_adfilter(data) {
+						let pre_name = null;
+						return data.replace(/#EXTINF[^\r\n]+\n([a-z0-9]+)\.ts\r?\n?/gm, (m, k) => {
+							let l_pre_name = k.slice(0, -4);
+							if (pre_name != null && pre_name != l_pre_name) {
+								return '';
+							}
+							pre_name = l_pre_name;
+							return m;
+						});
+					}
 					class pLoader extends Hls.DefaultConfig.loader {
 						constructor(config) {
 							super(config);
@@ -766,6 +777,8 @@ layui.define(['jquery'], function(exports) {
 												console.log("replace before:", response.data);
 												response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
 											}
+										} else if (response.url.match(/yzzy[0-9]?\.play-cdn[0-9]{0,2}\.com/) != null) {
+												response.data = play_cdn_adfilter(response.data);
 										}
 										console.log("replace aftert: ", response.data);
 										onSuccess(response, stats, context);
