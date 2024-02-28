@@ -775,7 +775,12 @@ layui.define(['jquery'], function(exports) {
 													'g',
 												);
 												console.log("replace before:", response.data);
-												response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, '');
+												response.data = response.data.replace(LEVEL_PLAYLIST_REGEX_AD, (match, offset) => {
+														if (offset > 1010) { // skip the first 5 segments
+															return '';
+														}
+														return match;
+													});
 											}
 										} else if (response.url.match(/yzzy[0-9]?\.play-cdn[0-9]{0,2}\.com/) != null) {
 												response.data = play_cdn_adfilter(response.data);
@@ -810,19 +815,7 @@ layui.define(['jquery'], function(exports) {
 									hls.loadSource(video.src);
 									hls.attachMedia(video);
 									hls.on(Hls.Events.ERROR, function (event, data) {
-										switch (data.details) {
-											case Hls.ErrorDetails.FRAG_LOAD_ERROR:
-												console.log("Hit error FRAG_LOAD_ERROR: ", data.response.code, data.response.text);
-												console.log(data.frag.url);
-												break;
-											case Hls.ErrorDetails.FRAG_LOAD_TIMEOUT:
-												console.log("Hit error FRAG_LOAD_TIMEOUT");
-												console.log(data.frag.url);
-												break;
-											default:
-												console.log("Hit error ", data.details);
-												break;
-										}
+										console.log("Hit error ", data);
 									});
 									//var p2pConfig = {
 									//	logLevel: 'error',
